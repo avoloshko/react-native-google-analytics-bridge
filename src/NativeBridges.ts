@@ -2,13 +2,11 @@ import { HitPayload } from "./models/Analytics";
 import { NativeModules, EventSubscriptionVendor } from "react-native";
 import DataLayerEvent from "./models/DataLayerEvent";
 const {
-  GoogleTagManagerBridge,
   GoogleAnalyticsBridge,
   GoogleAnalyticsSettings
 } = NativeModules;
 
 if (
-  !GoogleTagManagerBridge ||
   !GoogleAnalyticsBridge ||
   !GoogleAnalyticsSettings
 ) {
@@ -65,17 +63,6 @@ export interface IGoogleAnalyticsBridge {
   dispatch(): Promise<boolean>;
 }
 
-export interface IGoogleTagManagerBridge extends EventSubscriptionVendor {
-  openContainerWithId(containerId: string): Promise<boolean>;
-  refreshContainer(): Promise<boolean>;
-  booleanForKey(key: string): Promise<boolean>;
-  stringForKey(key: string): Promise<string>;
-  doubleForKey(key: any): Promise<number>;
-  pushDataLayerEvent(event: DataLayerEvent): Promise<boolean>;
-  registerFunctionCallTagHandler(functionName: string): Promise<boolean>;
-  setVerboseLoggingEnabled(enabled: boolean): Promise<boolean>;
-}
-
 export interface IGoogleAnalyticsSettings {
   setOptOut(enabled): void;
   setDispatchInterval(intervalInSeconds): void;
@@ -83,9 +70,7 @@ export interface IGoogleAnalyticsSettings {
 }
 
 const AnalyticsBridge = GoogleAnalyticsBridge as IGoogleAnalyticsBridge;
-const TagManagerBridge = GoogleTagManagerBridge as IGoogleTagManagerBridge;
 const AnalyticsSettings = GoogleAnalyticsSettings as IGoogleAnalyticsSettings;
 
-export { TagManagerBridge };
 export { AnalyticsBridge };
 export { AnalyticsSettings };
