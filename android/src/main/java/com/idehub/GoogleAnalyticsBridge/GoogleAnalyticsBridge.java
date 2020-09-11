@@ -1,7 +1,5 @@
 package com.idehub.GoogleAnalyticsBridge;
 
-import android.support.annotation.Nullable;
-
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -58,7 +56,7 @@ public class GoogleAnalyticsBridge extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void trackScreenView(String trackerId, String screenName, @Nullable ReadableMap payload){
+    public void trackScreenView(String trackerId, String screenName, ReadableMap payload){
         Tracker tracker = getTracker(trackerId);
 
         if (tracker != null)
@@ -76,7 +74,7 @@ public class GoogleAnalyticsBridge extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void trackEvent(String trackerId, String category, String action, @Nullable String label, @Nullable String value, @Nullable ReadableMap payload){
+    public void trackEvent(String trackerId, String category, String action, String label, String value, ReadableMap payload){
         Tracker tracker = getTracker(trackerId);
 
         if (tracker != null)
@@ -103,7 +101,7 @@ public class GoogleAnalyticsBridge extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void trackTiming(String trackerId, String category, Double interval, String name, @Nullable String label, @Nullable ReadableMap payload){
+    public void trackTiming(String trackerId, String category, Double interval, String name, String label, ReadableMap payload){
         Tracker tracker = getTracker(trackerId);
 
         if (tracker != null)
@@ -128,7 +126,7 @@ public class GoogleAnalyticsBridge extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void trackException(String trackerId, String error, Boolean fatal, @Nullable ReadableMap payload)
+    public void trackException(String trackerId, String error, Boolean fatal, ReadableMap payload)
     {
         Tracker tracker = getTracker(trackerId);
 
@@ -147,7 +145,7 @@ public class GoogleAnalyticsBridge extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void trackSocialInteraction(String trackerId, String network, String action, String targetUrl, @Nullable ReadableMap payload)
+    public void trackSocialInteraction(String trackerId, String network, String action, String targetUrl, ReadableMap payload)
     {
         Tracker tracker = getTracker(trackerId);
 
@@ -269,7 +267,7 @@ public class GoogleAnalyticsBridge extends ReactContextBaseJavaModule {
             tracker.enableExceptionReporting(enabled);
         }
     }
-  
+
     @ReactMethod
     public void createNewSession(String trackerId, String screenName) {
         Tracker tracker = getTracker(trackerId);
